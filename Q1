@@ -1,0 +1,87 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Car {
+private:
+    // Private member variables (encapsulated)
+    string brand;
+    string model;
+    int year;
+    int speed;
+
+public:
+    // Constructor to initialize brand, model, and year
+    Car(string b, string m, int y) : brand(b), model(m), year(y), speed(0) {}
+
+    // Getters for brand, model, year, and speed
+    string getBrand() const {
+        return brand;
+    }
+
+    string getModel() const {
+        return model;
+    }
+
+    int getYear() const {
+        return year;
+    }
+
+    int getSpeed() const {
+        return speed;
+    }
+
+    // Setter for speed (allows modification of speed only)
+    void setSpeed(int s) {
+        if (s >= 0) {
+            speed = s;
+        }
+    }
+
+    // Method to increase speed by a given amount
+    void increaseSpeed(int amount) {
+        speed += amount;
+        cout << "Speed increased by " << amount << " km/h. Current speed: " << speed << " km/h." << endl;
+    }
+
+    // Method to decrease speed by a given amount (speed cannot go below 0)
+    void decreaseSpeed(int amount) {
+        if (speed - amount < 0) {
+            speed = 0;
+        } else {
+            speed -= amount;
+        }
+        cout << "Speed decreased by " << amount << " km/h. Current speed: " << speed << " km/h." << endl;
+    }
+
+    // Method to print car details
+    void printDetails() const {
+        cout << "Car Details: " << endl;
+        cout << "Brand: " << brand << endl;
+        cout << "Model: " << model << endl;
+        cout << "Year: " << year << endl;
+        cout << "Current Speed: " << speed << " km/h" << endl;
+    }
+};
+
+int main() {
+    // Create a Car object
+    Car myCar("Toyota", "Corolla", 2021);
+
+    // Print initial details
+    myCar.printDetails();
+
+    // Increase speed by 30
+    myCar.increaseSpeed(30);
+
+    // Decrease speed by 10
+    myCar.decreaseSpeed(10);
+
+    // Try to decrease speed below 0
+    myCar.decreaseSpeed(25);
+
+    // Print final details
+    myCar.printDetails();
+
+    return 0;
+}
